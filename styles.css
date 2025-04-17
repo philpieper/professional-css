@@ -1,5 +1,5 @@
 /* Sets order of layers */
-@layer reset, base;
+@layer reset, base, utilities;
 
 /* Base styles */
 @layer base {
@@ -183,5 +183,18 @@
   textarea,
   select {
     font: inherit;
+  }
+}
+
+/* Utility */
+@layer utilities {
+  .visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
   }
 }
