@@ -1,5 +1,5 @@
 /* Sets order of layers */
-@layer reset, base, utilities;
+@layer reset, base, layout, utilities;
 
 /* Base styles */
 @layer base {
@@ -109,6 +109,41 @@
   h1 {
     font-size: var(--font-size-heading-xl);
   }
+
+  img {
+    border-radius: var(--border-radius-3);
+  }
+
+  section {
+    padding-block: 3.75rem;
+
+    @media (width > 760px) {
+      padding-block: 8rem;
+
+      &[data-padding="compact"] {
+        padding-block: 3.75rem;
+      }
+    }
+  }
+}
+
+@layer layout {
+  .wrapper {
+    max-width: 1130px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+
+    /* to prevent padding from affecting the width */
+    box-sizing: content-box;
+  }
+
+  & .wide {
+    max-width: 1330px;
+  }
+
+  & .narrow {
+    max-width: 720px;
+  }
 }
 
 /* Reset styles */
@@ -196,5 +231,78 @@
     position: absolute;
     white-space: nowrap;
     width: 1px;
+  }
+
+  .text-main {
+    color: var(--text-main);
+  }
+  .text-high-contrast {
+    color: var(--text-high-contrast);
+  }
+  .text-brand {
+    color: var(--text-brand);
+  }
+  .text-brand-light {
+    color: var(--text-brand-light);
+  }
+
+  .background-accent-light {
+    background-color: var(--background-accent-light);
+  }
+  .background-accent-main {
+    background-color: var(--background-accent-main);
+  }
+  .background-accent-dark {
+    background-color: var(--background-accent-dark);
+  }
+
+  .background-extra-light {
+    background-color: var(--background-extra-light);
+  }
+  .background-light {
+    background-color: var(--background-light);
+  }
+  .background-main {
+    background-color: var(--background-main);
+  }
+  .background-dark {
+    background-color: var(--background-dark);
+  }
+  .background-extra-dark {
+    background-color: var(--background-extra-dark);
+  }
+
+  .font-size-heading-sm {
+    font-size: var(--font-size-heading-sm);
+  }
+  .font-size-heading-regular {
+    font-size: var(--font-size-heading-regular);
+  }
+  .font-size-heading-lg {
+    font-size: var(--font-size-heading-lg);
+  }
+  .font-size-heading-xl {
+    font-size: var(--font-size-heading-xl);
+  }
+
+  .font-size-sm {
+    font-size: var(--font-size-sm);
+  }
+  .font-size-regular {
+    font-size: var(--font-size-regular);
+  }
+  .font-size-md {
+    font-size: var(--font-size-md);
+  }
+  .font-size-lg {
+    font-size: var(--font-size-lg);
+  }
+
+  .section-title {
+    font-size: var(--font-size-heading-regular);
+  }
+
+  .text-center {
+    text-align: center;
   }
 }
