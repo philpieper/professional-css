@@ -1,5 +1,5 @@
 /* Sets order of layers */
-@layer reset, base, layout, utilities;
+@layer reset, base, layout, components, utilities;
 
 /* Base styles */
 @layer base {
@@ -128,6 +128,34 @@
 }
 
 @layer layout {
+  .flow > :where(:not(:first-child)) {
+    margin-top: var(--flow-spacer, 1em);
+  }
+
+  .grid-flow {
+    display: grid;
+    gap: var(--grid-flow-gap, 1rem);
+  }
+
+  .equal-columns {
+    display: grid;
+    gap: var(--equal-columns-gap, 1rem);
+    align-items: var(--equal-columns-vertical-alignment, stretch);
+
+    @media (width > 760px) {
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+    }
+
+    &[data-gap="large"] {
+      --equal-columns-gap: 2rem;
+    }
+
+    &[data-alignment="center"] {
+      --equal-columns-vertical-alignment: center;
+    }
+  }
+
   .wrapper {
     max-width: 1130px;
     margin-inline: auto;
@@ -143,6 +171,28 @@
 
   & .narrow {
     max-width: 720px;
+  }
+}
+
+@layer components {
+  .site-header {
+    padding-block: 1rem;
+  }
+
+  .site-header__inner {
+    display: flex;
+    gap: 0.5rem 1rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .primary-navigation {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      list-style: none;
+    }
   }
 }
 
