@@ -175,6 +175,24 @@
 }
 
 @layer components {
+  .skip-to-main {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 1rem;
+    background: var(--background-accent-main);
+    border-radius: var(--border-radius-2);
+  }
+
+  .skip-to-main:not(:focus) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
   .site-header {
     padding-block: 1rem;
   }
