@@ -1,6 +1,10 @@
 /* Sets order of layers */
 @layer reset, base, layout, components, utilities;
 
+@view-transition {
+  navigation: auto;
+}
+
 /* Base styles */
 @layer base {
   :root {
@@ -12,6 +16,12 @@
     --clr-green-400: hsl(143, 19%, 49%);
     --clr-green-500: hsl(143, 38%, 37%);
     --clr-green-600: hsl(145, 29%, 19%);
+
+    --clr-brown-100: hsl(10, 5%, 90%);
+    --clr-brown-200: hsl(9, 7%, 85%);
+    --clr-brown-300: hsl(9, 8%, 75%);
+    --clr-brown-400: hsl(0, 6%, 60%);
+
     --clr-brown-500: hsl(10, 5%, 25%);
     --clr-brown-600: hsl(9, 7%, 21%);
     --clr-brown-700: hsl(9, 8%, 16%);
@@ -211,6 +221,9 @@
 
   .site-header {
     padding-block: 1rem;
+
+    overflow-x: clip;
+    position: relative;
   }
 
   .site-header__inner {
@@ -250,6 +263,11 @@
 
     @media (width < 760px) {
       display: none;
+      opacity: 0;
+      transition: opacity 0.2s, display 0.2s, translate 0.3s;
+      transition-behavior: allow-discrete;
+      translate: 100% 0%;
+
       position: absolute;
       z-index: 10;
       top: 0;
@@ -268,6 +286,20 @@
         margin-block: 0;
       }
 
+      li {
+        --delay: 0.2s;
+        translate: 50%;
+        transition: translate 0.2s var(--delay), opacity 0.2s var(--delay);
+      }
+
+      li:nth-child(2) {
+        --delay: 0.3s;
+      }
+
+      li:nth-child(3) {
+        --delay: 0.4s;
+      }
+
       li:not(:first-child) {
         margin-block-start: 1rem;
         padding-block-start: 1rem;
@@ -276,6 +308,23 @@
 
       [aria-expanded="true"] ~ & {
         display: block;
+        opacity: 1;
+        translate: 0 0;
+
+        @starting-style {
+          opacity: 0;
+          translate: 0 -30%;
+        }
+
+        li {
+          opacity: 1;
+          translate: 0 0;
+
+          @starting-style {
+            opacity: 0;
+            translate: 50% 0%;
+          }
+        }
       }
     }
   }
@@ -310,6 +359,10 @@
     background-image: url(/resources/webp/hero.webp);
     background-size: cover;
     background-position: center;
+
+    animation: fade-out forwards;
+    animation-timeline: view();
+    animation-range-start: exit;
   }
 
   .hero__title {
@@ -558,6 +611,11 @@
     display: none;
   }
 
+  .resizing * {
+    transition: none;
+    animation: paused;
+  }
+
   .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
@@ -639,5 +697,14 @@
 
   .text-center {
     text-align: center;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }

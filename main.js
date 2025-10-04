@@ -8,3 +8,13 @@ hamburgerMenu.addEventListener("click", function handleHamburgerMenuClick() {
 
   hamburgerMenu.setAttribute("aria-expanded", String(!isExpanded));
 });
+
+const resizeObserver = new ResizeObserver(() => {
+  document.body.classList.add("resizing");
+
+  requestAnimationFrame(() => {
+    document.body.classList.remove("resizing");
+  });
+});
+
+resizeObserver.observe(document.body);
