@@ -143,12 +143,12 @@
     gap: var(--grid-flow-gap, 1rem);
   }
 
-  .grid-auto-fit {
+  .grid-auto-fill {
     --auto-fit-min-column-size: 250px;
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(
-      auto-fit,
+      auto-fill,
       minmax(min(var(--auto-fit-min-column-size), 100%), 1fr)
     );
   }
@@ -554,6 +554,10 @@
 
 /* Utility */
 @layer utilities {
+  [hidden] {
+    display: none;
+  }
+
   .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
